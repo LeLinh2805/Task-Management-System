@@ -14,7 +14,7 @@ node_modules
 dist
 dist-ssr
 
-# Environment Variables (QUAN TRỌNG: Đã thêm .env)
+
 *.local
 .env
 .env.*
