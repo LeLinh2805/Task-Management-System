@@ -24,7 +24,8 @@ exports.register = async(req, res) => {
             fullName,
             email, 
             passWord: hashedPassword,
-            verificationToken: verifyToken
+            verificationToken: verifyToken,
+            isVerified: false
         });
         res.status(201).json({message: "Dang ki thanh cong"});
 
@@ -35,6 +36,8 @@ exports.register = async(req, res) => {
 
     }
 };
+
+
 exports.login = async(req, res) => {
     try{
         const {email, passWord} = req.body;

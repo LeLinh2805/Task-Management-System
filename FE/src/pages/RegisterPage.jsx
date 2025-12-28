@@ -18,7 +18,7 @@ const RegisterPage = () => {
 
       setTimeout(() => {
         navigate('/login');
-      }, 1000);
+      }, 2000);
       
     }catch{
       setAlert("Đăng ký thất bại. Vui lòng thử lại!");
@@ -31,14 +31,27 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h2>Đăng ký tài khoản</h2>
-        <RegisterForm onSubmit={handleRegister} isLoading={loading} />
-        <p>
-          Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
-        </p>
-      </div>
+    <div className="min-h-screen w-full bg-[#f3f4f6] flex items-center justify-center p-4">
+        <div className="bg-white w-full max-w-[440px] p-10 rounded-2xl shadow-xl border border-gray-100">
+            <div className="text-center mb-8">
+                <div className="flex justify-center mb-3">
+                    <div className="w-10 h-10 flex items-center justify-center text-blue-500 text-xl font-bold">
+                        TaskMaster
+                    </div>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-800">Đăng ký tài khoản</h2>
+                <p className="text-gray-500 text-sm mt-2">Bắt đầu công việc của bạn một cách hiệu quả hôm nay.</p>
+            </div>
+            <RegisterForm onSubmit={handleRegister} isLoading={loading} />
+            <div className="mt-8 text-center">
+                <p className="text-sm text-gray-500">
+                    Bạn đã có tài khoản?{" "}
+                    <Link to="/login" className="text-blue-600 font-bold hover:underline transition-all">
+                        Đăng nhập
+                    </Link>
+                </p>
+            </div>
+        </div>
     </div>
   );
 };
