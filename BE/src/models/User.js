@@ -31,6 +31,14 @@ const User = sequelize.define('User', {
     photo: {
         type: DataTypes.STRING,
         defaultValue: 'default.jpg'
+    },
+    resetPasswordToken: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    resetPasswordExpire: {
+        type: DataTypes.DATE,
+        allowNull: true
     }
 
 })

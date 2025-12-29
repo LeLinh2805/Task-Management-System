@@ -20,7 +20,7 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
       return;
     }
     const { confirmPassword, ...dataToSend } = formData
-    onSubmit(dataToSend);
+    onSubmit(dataToSend, setError);
   }
 
   return (
@@ -77,6 +77,11 @@ const RegisterForm = ({ onSubmit, isLoading }) => {
         </div>
 
       </div>
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative text-sm">
+          {error}
+        </div>
+      )}
       <button type="submit"
         className="w-full py-1.5 bg-blue-400 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg"
         disabled={isLoading}

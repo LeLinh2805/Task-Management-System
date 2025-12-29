@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ onSubmit, isLoading }) => {
   const [formData, setFormData] = useState({ email: '', passWord: '' });
@@ -47,10 +48,10 @@ const LoginForm = ({ onSubmit, isLoading }) => {
             </button>
           </div>
           <div className="flex justify-end mt-1">
-            <a href="/" title="Quên mật khẩu" 
+            <Link to={"/forgot-password"}
             className="text-xs font-bold text-slate-700 ml-1 hover:text-blue-800" >
               Quên mật khẩu
-            </a>
+            </Link>
           </div>
           
         </div>
