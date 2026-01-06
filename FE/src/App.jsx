@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import VerifyEmailPage from './pages/VerifyEmailPage';
-import ForgotPasswordPage from './pages/ForgotPasswordPage';
-import ResetPasswordPage from './pages/ResetPasswordPage';
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
+import VerifyEmailPage from './pages/auth/VerifyEmailPage';
+import ForgotPasswordPage from './pages/auth/ForgotPasswordPage';
+import ResetPasswordPage from './pages/auth/ResetPasswordPage';
+import BoardPage from './pages/dashboard/BoardPage';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPasswordPage/>}/>
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           
-          <Route path="/dashboard" element={<h1>Chào mừng đến với Dashboard!</h1>} />
+          <Route path="/dashboard" element={<BoardPage/>} />
         </Routes>
       </BrowserRouter>
     </div>

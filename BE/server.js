@@ -3,7 +3,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 const sequelize = require('./src/config/database');
-const authRoutes = require('./src/routes/authRoutes')
+const authRoutes = require('./src/routes/authRoutes');
+const taskRoutes = require('./src/routes/taskRoutes');
+const subtaskRoutes = require('./src/routes/subTaskRoutes');
+
 
 dotenv.config();
 
@@ -29,6 +32,8 @@ sequelize.sync({force: true})
 
 // Route
 app.use('/api/auth', authRoutes)
+app.use('/api/tasks', taskRoutes);
+app.use('api/subtasks', subtaskRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server đang chạy tại: http://localhost:${PORT}`);

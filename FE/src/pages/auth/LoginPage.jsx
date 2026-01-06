@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LoginForm from "../components/LoginForm";
-import authApi from '../api/authApi';
+import LoginForm from "../../components/Auth/LoginForm";
+import authApi from '../../api/authApi';
 
 const LoginPage = () =>{
     const navigate = useNavigate();
@@ -13,8 +13,8 @@ const LoginPage = () =>{
         setAlert('');
         try{
             const res = await authApi.login(formData);
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('user', JSON.stringify(res.data.user));
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('user', JSON.stringify(res.user));
              
             setAlert("Đăng nhập thành công!");
             setTimeout(()=>{
