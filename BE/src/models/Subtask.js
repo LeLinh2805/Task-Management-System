@@ -15,14 +15,14 @@ const Subtask = sequelize.define('Subtask', {
         type: DataTypes.TEXT,
         allowNull: true
     },
-    status: {
-        type: DataTypes.ENUM('TODO', 'IN_PROGRESS', 'DONE'),
-        defaultValue: 'TODO'
+    isCompleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
     },
     taskId: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
-});
+},{paranoid: true});
 
 module.exports = Subtask;

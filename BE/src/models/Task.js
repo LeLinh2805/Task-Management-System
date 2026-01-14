@@ -19,6 +19,14 @@ const Task = sequelize.define('Task', {
         type: DataTypes.ENUM('TODO', 'IN_PROGRESS', 'DONE'),
         defaultValue: 'TODO'
     },
+    dueDate: {
+        type: DataTypes.DATE,
+        allowNull: true 
+    },
+    priority: {
+        type: DataTypes.ENUM('LOW', 'MEDIUM', 'HIGH'),
+        defaultValue: 'MEDIUM'
+    },
     visibility: {
         type: DataTypes.ENUM('PRIVATE', 'PUBLIC'),
         defaultValue: 'PRIVATE'
@@ -26,10 +34,6 @@ const Task = sequelize.define('Task', {
     attachmentUrl: {
         type: DataTypes.STRING,
         allowNull: true
-    },
-    isArchived: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
     },
     creatorId: {
         type: DataTypes.INTEGER,
@@ -39,5 +43,30 @@ const Task = sequelize.define('Task', {
         type: DataTypes.INTEGER,
         allowNull: true
     }
-})
+},{paranoid: true,})
+
+Task.addHook('afterDestroy', async (task, options) => {
+    const { Subtask, Comment, TaskSnapshot } = sequelize.models;
+    const transaction = options.transaction;
+
+    // Delete cac thanh phan lien quan
+    await Promise.all([
+        Subtask.destroy({ where: { taskId: task.id }, transaction }),
+        Comment.destroy({ where: { taskId: task.id }, transaction }),
+        TaskSnapshot.destroy({ where: { taskId: task.id }, transaction })
+    ]);
+});
+
+// HOOKS: Restore
+Task.addHook('afterRestore', async (task, options) => {
+    const { Subtask, Comment, TaskSnapshot } = sequelize.models;
+    const transaction = options.transaction;
+
+    // Khoi phuc cac thanh phan lien quan
+    await Promise.all([
+        Subtask.restore({ where: { taskId: task.id }, transaction }),
+        Comment.restore({ where: { taskId: task.id }, transaction }),
+        TaskSnapshot.restore({ where: { taskId: task.id }, transaction })
+    ]);
+});
 module.exports = Task;

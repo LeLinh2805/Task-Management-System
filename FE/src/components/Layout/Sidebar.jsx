@@ -1,9 +1,16 @@
 import { LogOut, X } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, replace, useNavigate } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import { SIDEBAR_MENU } from '../../lib/constants';
+import defaultAvatar from '../../assets/default_avatar.png'
 
 const Sidebar = ({ user, isOpen, onClose }) => {
+    const navigate = useNavigate();
+    const hangleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login', { replace: true });
+    }
     return (
         <>
             <div
@@ -13,7 +20,7 @@ const Sidebar = ({ user, isOpen, onClose }) => {
                 )}
                 onClick={onClose}>
             </div>
-            <div className={cn('w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 z-50 transition-transform duration-300 ease-in-out',
+            <div className={cn('w-72 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0 z-50 transition-transform duration-300 ease-in-out',
                 isOpen ? "translate-x-0" : "-translate-x-full",
                 "md:translate-x-0 md:static")}>
 
@@ -49,28 +56,26 @@ const Sidebar = ({ user, isOpen, onClose }) => {
 
                 {/* User Profile Footer */}
                 <div className="p-4 border-t border-gray-200 bg-white">
-                    {user ? (
-                        <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer group">
-                            <img
-                                src={user.avatar || `https://ui-avatars.com/api/?name=${user.name}`}
-                                alt="avatar"
-                                className="w-9 h-9 rounded-full object-cover border border-gray-100"
-                            />
-                            <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium truncate text-gray-900">{user.name}</p>
-                                <p className="text-xs text-gray-500 truncate">{user.email}</p>
-                            </div>
-                            <LogOut size={18} className="text-gray-400 group-hover:text-red-500 transition-colors" />
+                    <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer group">
+                        <img
+                            src={user.photo || defaultAvatar}
+                            alt="avatar"
+                            className="w-9 h-9 rounded-full object-cover border border-gray-100"
+                        />
+                        <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium truncate text-gray-900">{user.fullName}</p>
+                            <p className="text-xs text-gray-500 truncate">{user.email}</p>
                         </div>
-                    ) : (
-                        <div className="flex gap-3 animate-pulse items-center p-2">
-                            <div className="w-9 h-9 bg-gray-200 rounded-full"></div>
-                            <div className="flex-1 space-y-2">
-                                <div className="h-3 bg-gray-200 rounded w-2/3"></div>
-                                <div className="h-2 bg-gray-200 rounded w-1/2"></div>
-                            </div>
-                        </div>
-                    )}
+                        <button
+                            onClick={hangleLogout}
+                            title='Logout'
+                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-all"
+                        >
+                            <LogOut size={18} />
+                        </button>
+
+                    </div>
+
                 </div>
             </div>
         </>

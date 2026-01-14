@@ -1,9 +1,13 @@
 import axiosClient from './axiosClient';
 
 const taskApi = {
-  getAllTasks: () => {
+  getAllTasks: (params) => {
     const url = '/tasks';
-    return axiosClient.get(url, {params});
+    return axiosClient.get(url, { params });
+  },
+  getTaskDetail: (id) => {
+    const url = `/tasks/${id}`;
+    return axiosClient.get(url);
   },
   createTask: (data) => {
     const url = '/tasks';
@@ -16,7 +20,18 @@ const taskApi = {
   deleteTask: (id) => {
     const url = `/tasks/${id}`;
     return axiosClient.delete(url);
+  },
+  getSnapshots: (taskId) => {
+    const url = `/tasks/${taskId}/history`;
+    return axiosClient.get(url);
+  },
+  exportTasks: (filter) => {
+    const url = '/tasks/export';
+    return axiosClient.post(url, { priority: filter },{
+      responseType: 'blob',
+   } );
   }
+
 };
 
 export default taskApi;

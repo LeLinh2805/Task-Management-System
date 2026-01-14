@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize')
+const { DataTypes } = require('sequelize')
 const sequelize = require('../config/database')
 
 const User = sequelize.define('User', {
@@ -15,7 +15,7 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
-        validate: {isEmail: true}
+        validate: { isEmail: true }
     },
     passWord: {
         type: DataTypes.STRING,
@@ -30,7 +30,8 @@ const User = sequelize.define('User', {
     },
     photo: {
         type: DataTypes.STRING,
-        defaultValue: 'default.jpg'
+        allowNull: true, 
+        defaultValue: null
     },
     resetPasswordToken: {
         type: DataTypes.STRING,

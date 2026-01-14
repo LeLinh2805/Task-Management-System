@@ -1,16 +1,16 @@
 require('dotenv').config();
 
-const defaultConfig ={
+const defaultConfig = {
     dialect: 'mysql',
     define: {
         underscored: true,
         timestamps: true
     },
     pool: {
-        max: 5,     
-        min: 0,     
-        acquire: 30000, 
-        idle: 10000  
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
     }
 }
 
@@ -39,6 +39,6 @@ module.exports = {
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
         port: process.env.PORT
-        
+
     }
 }

@@ -6,7 +6,7 @@ const MainLayout = ({ children, user }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans flex flex-col md:flex-row">
+    <div className="h-screen bg-gray-50 font-sans flex flex-col md:flex-row overflow-hidden">
       
       {/* Header Mobile: */}
       <div className="md:hidden bg-white border-b p-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
@@ -24,10 +24,11 @@ const MainLayout = ({ children, user }) => {
         onClose={() => setIsSidebarOpen(false)} 
       />
       
-      <div className="flex-1 transition-all duration-300 w-full">
-        {children}
-      </div>
-
+     <main className="flex-1 overflow-y-auto overflow-x-hidden w-full relative transition-all duration-300">
+        <div className="min-h-full">
+            {children}
+        </div>
+      </main>
     </div>
   );
 };

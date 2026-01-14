@@ -3,32 +3,23 @@ import { LayoutDashboard, CheckSquare, Calendar, Users, Settings } from 'lucide-
 export const SIDEBAR_MENU = [
   {
     label: 'Board',
-    path: '#',
+    path: '/dashboard',
     icon: LayoutDashboard
-  },
-  {
-    label: 'My Tasks',
-    path: '#',
-    icon: CheckSquare
-  },
-  {
-    label: 'Calendar',
-    path: '#',
-    icon: Calendar
-  },
+  }
+  
 ]
 
 export const BOARD_COLUMNS = [
   {
-    id: 'todo',
-    title: 'Todo',
+    id: 'TODO', 
+    title: 'To Do',
     color: 'bg-gray-400',
     emptyIcon: 'ClipboardList',
     emptyText: 'No tasks yet',
     emptyDesc: 'Add a new task to get started on your project.'
   },
   {
-    id: 'in_progress',
+    id: 'IN_PROGRESS',
     title: 'In Progress',
     color: 'bg-yellow-400',
     emptyIcon: 'Hourglass',
@@ -36,7 +27,7 @@ export const BOARD_COLUMNS = [
     emptyDesc: 'Drag tasks here to start working.'
   },
   {
-    id: 'done',
+    id: 'DONE', 
     title: 'Done',
     color: 'bg-green-500',
     emptyIcon: 'CheckCircle2',
