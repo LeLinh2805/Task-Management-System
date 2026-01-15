@@ -25,10 +25,10 @@ const BoardPage = () => {
     return userData ? JSON.parse(userData) : null;
   }, []);
 
-  // --- 1. LẤY DANH SÁCH USERS (Sửa lỗi dropdown trống) ---
+  // DANH SÁCH USERS 
   const fetchUsers = async () => {
     try {
-      const response = await userApi.getAll(); // Check lại tên hàm trong userApi của ông
+      const response = await userApi.getAll(); 
       console.log("Phản hồi từ API Users:", response);
       const data = Array.isArray(response) ? response : (response.data || []);
       setUsers(data);
@@ -42,7 +42,7 @@ const BoardPage = () => {
       setLoading(true);
       const params = {};
       if (filterPriority !== 'all') {
-        params.priority = filterPriority; // Sửa key cho khớp BE
+        params.priority = filterPriority; 
       }
 
       const response = await taskApi.getAllTasks(params);
@@ -97,7 +97,7 @@ const BoardPage = () => {
 
       const newTask = {
         ...taskData,
-        assignee: users.find(u => u.id == formData.assigneeId), // Gán object user để hiển thị avatar/tên
+        assignee: users.find(u => u.id == formData.assigneeId), 
         status: colum
       };
       setTasks(prev => [newTask, ...prev]);

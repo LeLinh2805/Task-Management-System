@@ -6,11 +6,11 @@ const EmptyState = ({ icon: Icon, title, description }) => {
       <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
         {Icon && <Icon size={28} className="text-gray-300" />}
       </div>
-      
+
       <h3 className="text-gray-900 font-medium text-sm mb-1">
         {title}
       </h3>
-      
+
       <p className="text-gray-400 text-xs max-w-[200px] leading-relaxed mx-auto">
         {description}
       </p>

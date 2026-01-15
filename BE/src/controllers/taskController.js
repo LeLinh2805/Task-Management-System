@@ -48,7 +48,7 @@ exports.createTask = async(req, res) =>{
 exports.getTasks = async(req, res)=> {
     try{
         const userId = req.user.id;
-        const {filterStatus, filterAssignee, filterPriority} = req.query;
+        const {filterStatus, priority} = req.query;
 
         let whereClause = {
             [Op.or]: [
@@ -61,11 +61,8 @@ exports.getTasks = async(req, res)=> {
         if(filterStatus){
             whereClause.status = filterStatus;
         }
-        if(filterAssignee){
-            whereClause.assigneeId = filterAssignee;
-        }
-        if(filterPriority && filterPriority !== 'all') {
-            whereClause.priority = filterPriority;
+        if(priority && priority !== 'all') {
+            whereClause.priority = priority;
         }
         const tasks = await Task.findAll({
             where: whereClause,
